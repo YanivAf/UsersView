@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
+import Typography from "@mui/material/Typography";
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
@@ -40,7 +41,7 @@ export default function UsersView() {
     {
       field: 'picture',
       headerName: 'Picture',
-      renderCell: (params) =>  <Avatar src={params.value.src} alt={params.value.alt} title={params.value.alt} />,
+      renderCell: (params) =>  <Avatar src={params.value.srcTN} alt={params.value.alt} title={params.value.alt} />,
     },
     {
       field: 'fullName',
@@ -82,7 +83,11 @@ export default function UsersView() {
             {
               id: user.login.uuid,
               userUrl: `${user.name.title}-${user.name.first}-${user.name.last}`,
-              picture: { src: user.picture.thumbnail, alt: `${user.name.title} ${user.name.first} ${user.name.last}` },
+              picture: {
+                srcTN: user.picture.thumbnail,
+                srcL: user.picture.large,
+                alt: `${user.name.title} ${user.name.first} ${user.name.last}`
+              },
               fullName: `${user.name.title} ${user.name.first} ${user.name.last}`,
               email: user.email,
               gender: user.gender,
@@ -106,20 +111,25 @@ export default function UsersView() {
   }, [rowsState.page, rowsState.pageSize]);
 
   return (
-    <div style={{ height: '95vh', width: '100%' }}>
-      <DataGrid
-        columns={columns}
-        rowCount={100}
-        rowsPerPageOptions={[10]}
-        {...rowsState}
-        paginationMode="server"
-        onPageChange={(page) => setRowsState((prev) => ({ ...prev, page }))}
-        onPageSizeChange={(pageSize) => setRowsState((prev) => ({ ...prev, pageSize }))}
-        pagination
-        nextIconButtonProps={{
-            disabled: true
-          }}
-      />
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', rowGap: 20 }}>
+      <Typography variant="h1" align="center">
+        Users View
+      </Typography>
+      <div style={{ height: '60vh', width: '100%' }}>
+        <DataGrid
+            columns={columns}
+            rowCount={100}
+            rowsPerPageOptions={[10]}
+            {...rowsState}
+            paginationMode="server"
+            onPageChange={(page) => setRowsState((prev) => ({ ...prev, page }))}
+            onPageSizeChange={(pageSize) => setRowsState((prev) => ({ ...prev, pageSize }))}
+            pagination
+            nextIconButtonProps={{
+                disabled: true
+              }}
+          />
+      </div>
       <Button
         aria-label="reset"
         variant="outlined"
