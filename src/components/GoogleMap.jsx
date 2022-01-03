@@ -21,7 +21,7 @@ export default function GoogleMap({ location, zoomLevel }) {
     <div className="map">
       <div className="google-map">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyADtRGdlbPhEihkPp_eOCE-b0XxMLFJnUs' }}
+          bootstrapURLKeys={{ key: apiKey }}
           defaultCenter={location}
           defaultZoom={zoomLevel}
         >
