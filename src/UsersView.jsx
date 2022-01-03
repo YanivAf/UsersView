@@ -26,13 +26,12 @@ export default function UsersView() {
 
   const columns = [
     {
-      field: 'urlQuery',
+      field: 'userUrl',
       headerName: 'View',
       renderCell: (params) => { return (
         <IconButton
           aria-label="info"
-          onClick={setViewedUserIndex(2)}
-          href={`/user/${params.value.replace(' ','-')}`}>
+          href={`/users/${params.value}`}>
           <InfoOutlinedIcon />
         </IconButton>
       );},
@@ -64,7 +63,7 @@ export default function UsersView() {
   ];
   
   const handleReset = () => {
-    window.localStorage.removeItem('allRows');
+    window.localStorage.clear();
     window.location.reload(false);
   }
   useEffect(() => {
@@ -82,13 +81,13 @@ export default function UsersView() {
           data.results.forEach(user => updatedAllRows.push(
             {
               id: user.login.uuid,
-              urlQuery: `${user.name.title}-${user.name.first}-${user.name.last}`,
+              userUrl: `${user.name.title}-${user.name.first}-${user.name.last}`,
               picture: { src: user.picture.thumbnail, alt: `${user.name.title} ${user.name.first} ${user.name.last}` },
               fullName: `${user.name.title} ${user.name.first} ${user.name.last}`,
               email: user.email,
               gender: user.gender,
               age: user.gender,
-              // address: 
+              location: user.location
             }));
             setAllRows(updatedAllRows);
             localStorage.setItem('allRows', JSON.stringify(updatedAllRows));
