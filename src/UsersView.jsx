@@ -67,6 +67,7 @@ export default function UsersView() {
     window.localStorage.clear();
     window.location.reload(false);
   }
+
   useEffect(() => {
     let active = true;
 
@@ -91,7 +92,7 @@ export default function UsersView() {
               fullName: `${user.name.title} ${user.name.first} ${user.name.last}`,
               email: user.email,
               gender: user.gender,
-              age: user.gender,
+              age: user.dob.age,
               location: user.location
             }));
             setAllRows(updatedAllRows);
