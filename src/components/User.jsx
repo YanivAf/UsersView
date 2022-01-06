@@ -5,6 +5,7 @@ import GoogleMap from "./GoogleMap";
 
 import Card from "@mui/material/Card";
 import CardHeader from '@mui/material/CardHeader';
+import Link from '@mui/material/Link';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
@@ -70,7 +71,7 @@ export default function User() {
             </IconButton>
           }
           title={viewedUser.fullName}
-          subheader={viewedUser.email}
+          subheader={<Link href={`mailto:${viewedUser.email}`}>{viewedUser.email}</Link>}
         />
         <CardMedia
           component="img"
