@@ -32,8 +32,8 @@ export default function User() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const allRows = JSON.parse(localStorage.getItem('allRows')) ?
-  JSON.parse(localStorage.getItem('allRows')) :
+  const allRows = JSON.parse(sessionStorage.getItem('allRows')) ?
+  JSON.parse(sessionStorage.getItem('allRows')) :
   [];
   const userFullName = params.userFullName.replaceAll('-', ' ');
   const viewedUser = allRows.find(row => row.fullName === userFullName);
@@ -56,10 +56,10 @@ export default function User() {
       (allRows.length === 0 || !viewedUser) ?
       navigate('/users') :
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-        <Typography variant="h2" align="center">
+        <Typography variant="h1" align="center" sx={{ fontSize: '3rem' }}>
           User Details
         </Typography>
-        <Card sx={{ width: "80vw", minWidth: 200, maxWidth: 300, m: 1 }}>
+        <Card sx={{ width: "fit-content", m: 1 }}>
           <CardHeader
           action={
             <IconButton
@@ -74,7 +74,7 @@ export default function User() {
         />
         <CardMedia
           component="img"
-          sx={{ objectPosition: "50% 25%", minHeight: 140 }}
+          sx={{ objectPosition: "50% 25%" }}
           image={viewedUser.picture.srcL}
           alt={viewedUser.picture.alt}
           title={viewedUser.picture.alt}

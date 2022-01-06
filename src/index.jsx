@@ -5,8 +5,11 @@ import { Routes, Route, Link, BrowserRouter as Router } from "react-router-dom";
 
 import UsersView from "./UsersView";
 import User from "./components/User";
+import PoppingAppBar from "./components/PoppingAppBar";
 
 ReactDOM.render(
+  <>
+  <PoppingAppBar />
   <Router>
     <Routes>
       <Route path="/users" element={<UsersView />} />
@@ -17,7 +20,8 @@ ReactDOM.render(
         </p>
       } />
     </Routes>
-  </Router>,
+  </Router>
+  </>,
   document.getElementById('root')
 );
 
